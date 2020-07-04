@@ -121,7 +121,7 @@ ldapmodify -H ldaps://ds1-dev.example.com -D cn=admin,cn=config -W -f config-cha
 
 ## Notes
 
-- slapd.conf / ldap.conf are depreciated as configuration options. See more details [here](https://www.zytrax.com/books/ldap/ch6/slapd-config.html).
+- slapd.conf / ldap.conf are deprecated as configuration options. See more details [here](https://www.zytrax.com/books/ldap/ch6/slapd-config.html).
 
 ## Resources
 
