@@ -117,6 +117,7 @@ ldapmodify -H ldaps://ds1-dev.example.com -D cn=admin,cn=config -W -f config-cha
   - [ ] On configured containers, confirm all schemas in the resources folder are applied.
 - [ ] Consider using Alpine
 - [ ] Add documentation for general use cases
+- [ ] Upload to Docker Hub
 
 ## Notes
 
