@@ -14,7 +14,7 @@ printf 'Press enter to continue...'
 read
 
 # Build the latest image
-docker build -t ranvier/openldap:latest openldap/
+# docker build -t ranvier/openldap:latest openldap/
 
 # Configure the server if not already configured
 if [[ ! -f $DEPLOY_DIR/data/config/.configured.flag  ]]; then

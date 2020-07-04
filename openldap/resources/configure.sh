@@ -68,7 +68,6 @@ changetype: add
 objectclass: top
 objectclass: organization
 objectclass: dcObject
-dc: $ORG_NAME
 o: $ORG_NAME
 EOF
 }

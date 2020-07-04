@@ -9,14 +9,14 @@ services:
     restart: always
 
     environment:
-      - ORG_NAME="Ranvier"
-      - ORG_DNS="example.com"
-      - ORG_DN="dc=example,dc=com"
-      - SERVER_FQDN="ldap.example.com"
-      - ROOT_SECRET="password"
+      - ORG_NAME=Ranvier
+      - ORG_DNS=example.com
+      - ORG_DN=dc=example,dc=com
+      - SERVER_FQDN=ldap.example.com
+      - ROOT_SECRET=password
     ports:
       - '389:389'
       - '636:636'
     volumes:
-      - '/srv/ldap/config:/config'
-      - '/srv/ldap/db:/var/lib/ldap'
+      - './ldap/config:/config'
+      - './ldap/db:/var/lib/ldap'
