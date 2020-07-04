@@ -9,11 +9,9 @@ and makes full use of environment variables for configuration.
 
 ## Quickstart
 
-1. Run `deploy.sh` (make sure you modify the variables first!)
+1. Run `docker-compose up -d` (make sure you modify the configuration variables first!)
 
 2. Login to your LDAP server w/ username `cn=admin,dc=example,dc=com` and whatever password you chose
-
-    2a. Modify the server configuration by specifying a base DN of `cn=config` and a bind DN of `cn=admin,cn=config` (same password as before)
 
 ## Development
 
