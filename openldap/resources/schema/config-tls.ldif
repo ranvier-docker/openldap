@@ -1,0 +1,17 @@
+# TLS Certificate Configuration
+dn: cn=config
+changetype: modify
+add: olcTLSCACertificateFile
+olcTLSCACertificateFile: /config/certs/ca-certificates.crt
+-
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: /config/certs/server.crt
+-
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /config/certs/server.key
+
+# Force connections to use TLS
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+add: olcSecurity
+olcSecurity: tls=1

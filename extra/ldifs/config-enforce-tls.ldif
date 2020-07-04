@@ -1,0 +1,7 @@
+# Sourced from https://serverfault.com/questions/459718/configure-openldap-with-tls-required
+
+# Require TLS for all connections
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+add: olcSecurity
+olcSecurity: tls=1

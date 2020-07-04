@@ -1,0 +1,10 @@
+# Add commonly needed OUs
+dn: {{BASE_DN}}
+changetype: add
+ou: People
+-
+ou: Groups
+-
+ou: Automounts
+-
+ou: Netgroup

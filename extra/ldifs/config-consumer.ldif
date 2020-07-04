@@ -1,0 +1,24 @@
+# Sourced from https://ubuntu.com/server/docs/service-ldap-replication
+# Configures LDAP consumer server
+dn: cn=module{0},cn=config
+changetype: modify
+add: olcModuleLoad
+olcModuleLoad: syncprov
+
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+add: olcDbIndex
+olcDbIndex: entryUUID eq
+-
+add: olcSyncrepl
+olcSyncrepl: rid={{RID}}
+  provider={{PROVIDER_URI}}
+  bindmethod=simple
+  binddn="cn=replicator,{{BASE_DN}}" credentials={{REPLICATOR_SECRET}}
+  searchbase="{{BASE_DN}}"
+  schemachecking=on
+  type=refreshAndPersist retry="60 +"
+  starttls=critical tls_reqcert=demand
+-
+add: olcUpdateRef
+olcUpdateRef: {{PROVIDER_URI}}

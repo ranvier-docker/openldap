@@ -1,0 +1,47 @@
+# Sourced from https://ubuntu.com/server/docs/service-ldap-replication
+# Configures server as provider server
+
+# Add replication user
+dn: cn=replicator,{{BASE_DN}}
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: replicator
+description: Replication user
+userPassword: {{REPLICATION_SECRET_HASH}}
+
+# Apply ACL rules to replication user
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+add: olcAccess
+olcAccess: {0}to *
+  by dn.exact="cn=replicator,{{BASE_DN}}" read
+  by * break
+-
+add: olcLimits
+olcLimits: dn.exact="cn=replicator,{{BASE_DN}}"
+  time.soft=unlimited time.hard=unlimited
+  size.soft=unlimited size.hard=unlimited
+
+# Add indexes to the frontend db.
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+add: olcDbIndex
+olcDbIndex: entryCSN eq
+-
+add: olcDbIndex
+olcDbIndex: entryUUID eq
+
+# Load the syncprov module.
+dn: cn=module{0},cn=config
+changetype: modify
+add: olcModuleLoad
+olcModuleLoad: syncprov
+
+# syncrepl Provider for primary db
+dn: olcOverlay=syncprov,olcDatabase={1}mdb,cn=config
+changetype: add
+objectClass: olcOverlayConfig
+objectClass: olcSyncProvConfig
+olcOverlay: syncprov
+olcSpCheckpoint: 100 10
+olcSpSessionLog: 100

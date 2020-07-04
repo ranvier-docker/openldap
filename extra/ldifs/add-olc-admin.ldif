@@ -1,0 +1,13 @@
+# Sourced from https://gos.si/blog/installing-openldap-on-debian-squeeze-with-olc/
+
+# Add user
+dn: olcDatabase={0}config,cn=config
+changetype: modify
+add: olcRootDN
+olcRootDN: cn=admin,cn=config
+
+# Add password
+dn: olcDatabase={0}config,cn=config
+changetype: modify
+add: olcRootPW
+olcRootPW: {{OLC_ADMIN_SECRET}}
