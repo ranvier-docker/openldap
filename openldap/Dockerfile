@@ -1,8 +1,5 @@
 FROM ubuntu:18.04
 
-# Add CISE mirror
-RUN sed -i 's/archive.ubuntu.com/mirror.cise.ufl.edu/g' /etc/apt/sources.list
-
 # Install OpenLDAP
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y slapd ldap-utils openssl ca-certificates
 
