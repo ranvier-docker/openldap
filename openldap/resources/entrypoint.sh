@@ -8,8 +8,7 @@
 if [ ! -e /config/.configured.flag ]; then
   /app/configure.sh || fatal 'Could not configure OpenLDAP!'
   
-  info 'Server configured! Start container again to start server.'
-  exit 0
+  info 'Server configured!'
 fi
 
 # TODO  Ensure saved schemas are applied
