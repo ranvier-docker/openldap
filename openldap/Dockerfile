@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 # Install OpenLDAP
 RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y slapd ldap-utils openssl ca-certificates
