@@ -52,7 +52,7 @@ olcRootPW: $ROOT_HASH
 
 dn: olcDatabase={0}config,cn=config
 changetype: modify
-add: olcRootDN
+replace: olcRootDN
 olcRootDN: cn=admin,cn=config
 -
 add: olcRootPW
@@ -99,7 +99,7 @@ chown -R openldap:openldap /config ||\
 fatal 'Could not save configuration'
 
 # Apply schemas
-start_ldap
+start_ldap || fatal 'Could not start server for initial configuration!'
 sleep 1
 LDAP_PID=`pgrep slapd`
 
