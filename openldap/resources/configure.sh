@@ -25,7 +25,7 @@ gen_certs(){
     rm server.csr
 
     cp /etc/ssl/certs/ca-certificates.crt .
-    chown -R openldap:openldap *
+    chown -R ldap:ldap *
   
   cd -
 }
@@ -90,17 +90,15 @@ gen_certs && info 'Certificates generated'
 
 # Configure slapd
 info 'Initializing LDAP'
-dpkg-reconfigure -f noninteractive slapd
 gen_init_schema
 
 # Move configuration to persistent location
-cp -r /etc/ldap/slapd.d /config/ &&\
-chown -R openldap:openldap /config ||\
+cp -r /etc/openldap /config/ &&\
+chown -R ldap:ldap /config ||\
 fatal 'Could not save configuration'
 
 # Apply schemas
-start_ldap
-sleep 1
+start_ldap && sleep 1 || fatal 'Could not start slapd for initial configuration!'
 LDAP_PID=`pgrep slapd`
 
 info 'Importing LDAP configuration'

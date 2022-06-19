@@ -14,5 +14,5 @@ fatal(){
 }
 
 start_ldap(){
-  slapd -F /config/slapd.d -u openldap -g openldap -h 'ldap:// ldaps:// ldapi:///' $@
+  slapd -F /config -u ldap -g ldap -h 'ldap:// ldaps:// ldapi:///' $@
 }
